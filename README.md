@@ -10,6 +10,8 @@ Un générateur de mots de passe en C, simple, rapide et efficace — avec un sy
 - Choix des types de caractères inclus dans le mot de passe
 - Longueur personnalisable (entre 8 et 64 caractères)
 - Scoring automatique de la robustesse du mot de passe
+- Détection de répétitions consécutives (ex: `aaa`, `111`)
+- Analyse de fréquence des caractères
 
 ---
 
@@ -28,10 +30,19 @@ Un générateur de mots de passe en C, simple, rapide et efficace — avec un sy
 
 Le mot de passe généré est évalué sur **100 points**, répartis comme suit :
 
+Le mot de passe généré est évalué sur **100 points**, répartis comme suit :
+
 | Critère | Points |
 |---|---|
 | Diversité des types de caractères | jusqu'à **60 pts** (15 pts par type) |
 | Longueur du mot de passe | jusqu'à **40 pts** (4 pts par caractère au-delà de 8) |
+
+### Malus
+
+- **Répétitions consécutives** — chaque paire de caractères identiques côte à côte 
+  (ex: `aa`, `11`) retire **1 point**.
+- **Fréquence excessive** — pour chaque caractère apparaissant 2 fois ou plus,
+  un malus de **1 point** est appliqué toutes les 2 occurrences supplémentaires.
 
 ### Niveaux de robustesse
 
@@ -79,13 +90,13 @@ passwordgen/
 
 ```
 Entrez un longueur pour votre mot de passe : 16
-Voulez-vous des miniscules là dedans (y / n) ? y
+Voulez-vous des miniscules là dedans (y / n) ? y = yes, n = no : y
 Voulez-vous des majuscules là dedans (y / n) ? y
 Voulez vous des chiffres là dedans (y / n) ? y
 Voulez vous des caractères spéciaux là dedans (y / n) ? y
-
-Mot de passe généré : aB3!Kz9#mQ2@Xw7&
+Mot de passe généré : &r.4A)5880{0/<4e
 Votre mot de passe est excellent !
+La force est de : 91
 ```
 
 ---
@@ -93,9 +104,6 @@ Votre mot de passe est excellent !
 ## Roadmap
 
 Améliorations prévues pour le scoring :
-
-- [ ] Détection de répétitions consécutives (ex: `aaa`, `111`)
-- [ ] Analyse de fréquence des caractères
 - [ ] Détection de patterns (ex: `abc`, `123`, `qwerty`)
 
 ## Langage

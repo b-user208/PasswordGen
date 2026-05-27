@@ -38,17 +38,18 @@ int main(void) {
     // Force du mdp 
     force = strength(pwd);
     if(force <= 30) 
-            printf("Votre mot de passe est faible !\n");
+            printf("Votre mot de passe est faible !\nLa force est de : %d\n", force);
         else if(force > 30 && force <= 50)
-            printf("Votre mot de passe est moyen !\n"); 
+            printf("Votre mot de passe est moyen !\nLa force est de : %d\n", force); 
         else if(force > 50 && force <= 75)
-            printf("Votre mot de passe est bon !\n");
+            printf("Votre mot de passe est bon !\nLa force est de : %d\n", force);
         else if(force > 75 && force <= 90)
-            printf("Votre mot de passe est très bon !\n");
+            printf("Votre mot de passe est très bon !\nLa force est de : %d\n", force);
         else if(force > 90 && force <= 100)
-        printf("Votre mot de passe est excellent !\n");
+        printf("Votre mot de passe est excellent !\nLa force est de : %d\n", force);
 
     // Libération de la mémoire et fin du programme
     free(pwd);
+    pwd = NULL;
     return 0;
 }
